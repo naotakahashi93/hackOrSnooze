@@ -19,7 +19,7 @@ async function login(evt) {
 
   // User.login retrieves user info from API and returns User instance
   // which we'll make the globally-available, logged-in user.
-  currentUser = await User.login(username, password);
+  currentUser = await User.login(username, password); //takes the login function from the class User and assigns it to currentUser 
 
   $loginForm.trigger("reset");
 
