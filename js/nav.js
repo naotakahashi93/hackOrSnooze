@@ -24,18 +24,17 @@ function navLoginClick(evt) {
 }
 
 function newStoryForm(evt) { 
-  console.log("newStoryForm", evt);
-  hidePageComponents();
-$("#newStoryForm").show();
+    console.log("newStoryForm", evt);
+    hidePageComponents();
+    $("#newStoryForm").show();
+
 }
 
 $navLogin.on("click", navLoginClick);
 
 
-// $("#newStoryNav").on("click", () => {console.log("Nav clicked")});
-$navStory.click(function() {
-  alert("Nav Clicked");
-  });
+$("#newStoryNav").on("click", () => {console.log("Nav clicked")});
+
 // $("#newStoryNav").on("click", newStoryForm);
 
 /** When a user first logins in, update the navbar to reflect that. */

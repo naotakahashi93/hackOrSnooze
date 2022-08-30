@@ -12,7 +12,7 @@ class Story {
    *   - {title, author, url, username, storyId, createdAt}
    */
 
-  constructor({ storyId, title, author, url, username, createdAt }) {
+  constructor({ storyId, title, author, url, username, createdAt }) { // this is the constructor so any new instance of Story should can in these parameters (storyId, title, author, url, username, createdAt)
     this.storyId = storyId;
     this.title = title;
     this.author = author;
@@ -25,7 +25,7 @@ class Story {
 
   getHostName() {
     // UNIMPLEMENTED: complete this function!
-    
+
     return `${this.url}`;
   }
 }
@@ -74,12 +74,27 @@ class StoryList {
    * Returns the new Story instance
    */
 
-  async addStory(user, newStory) {
+  async addStory(user, {title, author, url} ) { // this function should take in the user(token), and an object (the story) with the title author and url as the API rules
     // UNIMPLEMENTED: complete this function!
-
-const result = await axios.post(`${BASE_URL}/stories`, {username: `${user}`, story: `${newStory}`})
-console.log("result", result);
+  const token = user.loginToken // we are assigning a variable called token which takes the "user" input which should be the currentUser (which is await User.login or await User.signup) and then takes the loginToken of that user
+  const storyData = { // creating a  variable called storyData which includes the data of the story (title author and url), this is what we pass into the post request 
+    token, 
+    story:{
+      title: title,
+      author: author,
+      url : url
+    }
   }
+  const result = await axios.post(`${BASE_URL}/stories`, storyData)
+  console.log("result", result);
+
+  const story = new Story(response.data.story) // creating a variable and assigning it an instance of the Story class which takes in the story parameters (title author and url)
+ 
+return story;
+}
+
+
+
 }
 
 
@@ -120,16 +135,16 @@ class User {
    * - name: the user's full name
    */
 
-  static async signup(username, password, name) {
+  static async signup(username, password, name) { // this fucntion allows the user to sign up a new account
     const response = await axios({
-      url: `${BASE_URL}/signup`,
+      url: `${BASE_URL}/signup`, // we are seding a post request to the signup endpoint and passing in the data username, password, name
       method: "POST",
       data: { user: { username, password, name } },
-    });
+    }); // this should return a 201 and a token under the data 
 
     let { user } = response.data
 
-    return new User(
+    return new User(  // here we are returning an new instance (an object called User)  for the user that just signd up, an object with the user information and a token.
       {
         username: user.username,
         name: user.name,
@@ -147,7 +162,7 @@ class User {
    * - password: an existing user's password
    */
 
-  static async login(username, password) {
+  static async login(username, password) { // the login function takes in a username and password which also returns the token for that existing user
     const response = await axios({
       url: `${BASE_URL}/login`,
       method: "POST",
@@ -166,7 +181,7 @@ class User {
       },
       response.data.token
     );
-  }
+  } 
 
   /** When we already have credentials (token & username) for a user,
    *   we can log them in automatically. This function does that.
