@@ -27,15 +27,11 @@ function newStoryForm(evt) {
     console.log("newStoryForm", evt);
     hidePageComponents();
     $("#newStoryForm").show();
-
 }
 
 $navLogin.on("click", navLoginClick);
 
-
-$("#newStoryNav").on("click", () => {console.log("Nav clicked")});
-
-// $("#newStoryNav").on("click", newStoryForm);
+$navStory.on("click", newStoryForm);
 
 /** When a user first logins in, update the navbar to reflect that. */
 
