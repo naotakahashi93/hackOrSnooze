@@ -80,6 +80,8 @@ async function checkForRememberedUser() {
 
   // try to log in with these credentials (will be null if login failed)
   currentUser = await User.loginViaStoredCredentials(token, username);
+  // localStorage.getItem("favorites")
+  // localStorage.getItem("isClicked")
 }
 
 /** Sync current user information to localStorage.
@@ -93,6 +95,7 @@ function saveUserCredentialsInLocalStorage() {
   if (currentUser) {
     localStorage.setItem("token", currentUser.loginToken);
     localStorage.setItem("username", currentUser.username);
+    // localStorage.setItem("favorites", currentUser.favorites)
   }
 }
 

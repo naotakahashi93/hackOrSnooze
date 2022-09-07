@@ -38,9 +38,17 @@
     <a class="nav-link" href="#" id="nav-all">Hack or Snooze</a>
   </div>
   
-  <div class="nav-left">
-  <a class="nav-link" href="#" id ="newStoryNav"> Add new story </a>
+  <div class="nav-left"> <!-- inputted a new div in the nav bar to add a new story -->
+  <a class="nav-link" href="#" id ="newStoryNav"> Add new story </a> <!-- within the div is an anchor tag directing to the # endpoint-->
   </div>
+
+  <div class="nav-mid"> <!-- inputted a new div in the nav bar to access the favorites list -->
+    <a class="nav-link" href="#" id ="faveNav"> My favorites list  </a> 
+    </div>
+
+    <div class="nav-midright"> <!-- inputted a new div in the nav bar to access the favorites list -->
+      <a class="nav-link" href="#" id ="myStoryNav"> My story list  </a> 
+      </div>
 
   <div class="nav-right">
     <a class="nav-link" href="#" id="nav-login">login/signup</a>
@@ -101,30 +109,33 @@
     <button type="submit">create account</button>
   </form>
 
-
   
 </section>
 
 <!-- StorySignup form -->
-  <form
-      id="newStoryForm"
-      class="hidden"
-      method="post">
-    <h4>POST STORY</h4>
-    <!-- <div class="login-input">
-      <label for="signup-name">name</label>
-      <input id="signup-name" autocapitalize="words">
+<!-- Created a new form to submit a new story with three inputs, title, author and URL and a submit button at the end-->
+  <form 
+      id="newStoryForm" 
+      class="hidden">
+    <h4>POST NEW STORY</h4>
+    <div class="title-input">
+      <label for="story-title">Title</label>
+      <input id="story-title" autocapitalize="words">
     </div>
-    <div class="login-input">
-      <label for="signup-username">username</label>
-      <input id="signup-username" autocomplete="new-username">
+    <div class="author-input">
+      <label for="story-author">Author</label>
+      <input id="story-author" autocomplete="new-username">
     </div>
-    <div class="login-input">
-      <label for="signup-password">password</label>
-      <input id="signup-password" autocomplete="new-password" type="password">
-    </div> -->
-    <button type="submit">POST</button>
+    <div class="URL-input">
+      <label for="story-URL">URL</label>
+      <input id="story-URL" autocomplete="new-password" type="url">
+    </div>
+    <button id="postStoryBtn" type="submit">POST</button>
   </form>
+
+
+  
+  
 
 <!-- Library JS & our JS -->
 <script src="https://unpkg.com/jquery"></script>

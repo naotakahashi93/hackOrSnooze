@@ -14,7 +14,6 @@ const $navLogin = $("#nav-login");
 const $navUserProfile = $("#nav-user-profile");
 const $navLogOut = $("#nav-logout");
 
-const $navStory = $("#newStoryNav");//
 
 /** To make it easier for individual components to show just themselves, this
  * is a useful function that hides pretty much everything on the page. After
@@ -41,6 +40,8 @@ async function start() {
 
   // if we got a logged-in user
   if (currentUser) updateUIOnUserLogin();
+  rememberFave();
+
 }
 
 // Once the DOM is entirely loaded, begin the app

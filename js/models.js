@@ -12,7 +12,7 @@ class Story {
    *   - {title, author, url, username, storyId, createdAt}
    */
 
-  constructor({ storyId, title, author, url, username, createdAt }) { // this is the constructor so any new instance of Story should can in these parameters (storyId, title, author, url, username, createdAt)
+  constructor({ storyId, title, author, url, username, createdAt }) { // this is the constructor so any new instance of Story can take in these parameters (storyId, title, author, url, username, createdAt)
     this.storyId = storyId;
     this.title = title;
     this.author = author;
@@ -77,7 +77,8 @@ class StoryList {
   async addStory(user, {title, author, url} ) { // this function should take in the user(token), and an object (the story) with the title author and url as the API rules
     // UNIMPLEMENTED: complete this function!
   const token = user.loginToken // we are assigning a variable called token which takes the "user" input which should be the currentUser (which is await User.login or await User.signup) and then takes the loginToken of that user
-  const storyData = { // creating a  variable called storyData which includes the data of the story (title author and url), this is what we pass into the post request 
+  
+  const storyData = { // creating a variable called storyData which includes the data of the story (title author and url) as required to pass into the post request 
     token, 
     story:{
       title: title,
@@ -85,11 +86,10 @@ class StoryList {
       url : url
     }
   }
-  const result = await axios.post(`${BASE_URL}/stories`, storyData)
+  const result = await axios.post(`${BASE_URL}/stories`, storyData) // getting the result of the post request by passing in the API with the stories endpoint and the data
   console.log("result", result);
 
-  const story = new Story(response.data.story) // creating a variable and assigning it an instance of the Story class which takes in the story parameters (title author and url)
- 
+  const story = new Story(result.data.story) // creating a variable and assigning it an instance of the Story class which takes in the Story parameters (title author and url)
 return story;
 }
 
@@ -212,4 +212,21 @@ class User {
       return null;
     }
   }
+
+async addFave(storyId) { //the function for adding a favorite
+  const token = this.loginToken  //getting the user token of the logged in user
+const result = await axios.post(`${BASE_URL}/users/${this.username}/favorites/${storyId}`, {token: token}) // the add favorite post request reuquires a token and URL that takes in the username and the storyId
+  console.log(result);
+}
+
+async removeFave(storyId){
+  const token = currentUser.loginToken;
+  console.log("token", token)
+  const result = await axios ({
+    url: `${BASE_URL}/users/${this.username}/favorites/${storyId}`,
+    method: "DELETE",
+    data :{token: token}}) // the add favorite post request reuquires a token and URL that takes in the username and the storyId
+ console.log("result", result)
+}
+
 }

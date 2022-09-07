@@ -37,3 +37,9 @@
 .story-user {
   display: block;
 }
+
+ .clicked{
+  background-color: red;
+  content: "&#9734;";
+
+}
